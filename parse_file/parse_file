@@ -1,0 +1,92 @@
+#!/usr/bin/python
+
+#---Header---
+
+#TITLE parse_file
+#USERS oom
+#TIME 17/02/15 15:19
+
+#---Import---
+
+import  sys
+import  re
+import  os
+
+#---Utils---
+
+def Between(start, end, text):
+    startvalue = text.index(start) + len(start)
+    endvalue = text.index(end, startvalue)
+    return (text[startvalue : endvalue])
+
+def Between_at_end(start, text):
+    startvalue = text.index(start) + len(start)
+    return (text[startvalue:])
+
+#---Funcs---
+
+def set_header(header, name_file):
+    return (header.replace('[NAMEFILE]', name_file))
+
+def get_header(content):
+    header_tab = []
+    header = ""
+    i = 0
+    for line in content.split('\n'):
+        if (i < 10):
+            header_tab.append(line)
+        else:
+            break
+        i += 1
+    name_of_file = Between("** ", " for", header_tab[1])
+    header_tab[1] = header_tab[1].replace(name_of_file, '[NAMEFILE]')
+    i = 0
+    for i in range(10):
+        header += header_tab[i]
+        header += '\n'
+    return (header[:-1])
+        
+def get_cut(content):
+    toto = []
+    regex = re.compile("/\*(\w+)\*/")
+    matchs = regex.findall(content)
+    for m in matchs:
+        toto.append(m)
+    return (toto)
+
+def get_content(name_file):
+    with open(name_file, 'r') as f:
+        content = f.read()
+        return (content)
+
+def safe_save(name_file, content):
+    with open(".safe" + name_file, 'w+') as f:
+        f.write(content)
+        
+def write_new_file(name_file, header, content):
+    name_file = name_file.lower()
+    name_file += '.c'
+    header = set_header(header, name_file)
+    with open(name_file, 'w+') as f:
+        f.write(header)
+        f.write(content)
+        
+#---Main---
+if (len(sys.argv) == 2):
+    content = get_content(sys.argv[1])
+    safe_save(sys.argv[1],content)
+    cuts = get_cut(content) 
+    header = get_header(content)
+    os.remove(sys.argv[1])
+    for s in cuts:
+        if (s == cuts[len(cuts) - 1]):
+            tmp_content = Between_at_end(s+'*/', content)
+            write_new_file(s, header, tmp_content)
+        else:
+            tmp_content = Between(s+'*/', '/*'+cuts[cuts.index(s) + 1],content)
+            write_new_file(s, header, tmp_content)
+    for s in cuts:
+        if (s == cuts[len(cuts) - 1]):
+            print(s.lower() + '.c')
+        else:
+            print(s.lower() + '.c' + ' \\')

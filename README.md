@@ -1,3 +1,3 @@
 # Python-script
 
-Contains all of my python script
+Contains all of python script

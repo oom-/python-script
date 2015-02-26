@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+#---Header---
+
+#TITLE get_funcs
+#USERS oom
+#TIME 17/02/15 15:19
+
+#---Import---
+
+import  sys
+import  re
+
+#---Funcs---
+def get_content(name_file):
+    with open(name_file, 'r') as f:
+        content = f.read()
+    return (content)
+
+def print_funcs(content):
+    regex = re.compile("(\w+[\t ]+\**\w+\(.*\))")
+    matchs = regex.findall(content)
+    for func in matchs:
+        print(func+';')
+    
+#---Main---
+if (len(sys.argv) >= 2):
+    for t in sys.argv:
+        if (sys.argv.index(t) >= 1):
+            content = get_content(t)
+            print_funcs(content)
