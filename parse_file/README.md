@@ -10,7 +10,7 @@ The parsing pastle the functions without the includes.
 *You can use like :* **parse_file main.c**
 
 ##Example :
-	   get_functions main.c
+	    parse_file main.c
 ###Content of main.c
 ```c
 /*
