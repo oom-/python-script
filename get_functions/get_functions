@@ -18,7 +18,7 @@ def get_content(name_file):
     return (content)
 
 def print_funcs(content):
-    regex = re.compile("(\w+[\t ]+\**\w+\(.*\))")
+    regex = re.compile("(\w* *\w+[\t ]+\**\w+\(.*\))")
     matchs = regex.findall(content)
     for func in matchs:
         print(func+';')
