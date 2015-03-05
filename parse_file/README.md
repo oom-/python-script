@@ -1,7 +1,7 @@
 #parse_file
 
 ------------------------------------------------------------------------
-##MAJ 1
+##UPDATE 1
 Add optionnal option for automatically include header in div file.
 
 ###Example
