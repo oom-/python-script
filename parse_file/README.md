@@ -40,7 +40,7 @@ The parsing pastle the functions without the includes.
 *You can use like :* **parse_file main.c**
 
 ##Example
-	    parse_file main.c
+	parse_file main.c
 ###Content of main.c
 ```c
 /*
