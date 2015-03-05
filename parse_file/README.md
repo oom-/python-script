@@ -2,7 +2,7 @@
 
 ------------------------------------------------------------------------
 ##MAJ 1
-Add option for automatically include header in div file.
+Add optionnal option for automatically include header in div file.
 
 ###Example
 	parse_file main.c -i 'one,two'
