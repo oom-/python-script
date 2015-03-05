@@ -25,6 +25,13 @@ def Between_at_end(start, text):
 
 #---Funcs---
 
+def make_includes(includes):
+    result = ""
+    tab = includes.split(',')
+    for h in tab:
+        result += '#include "' + h.strip() + '.h"' + '\n'
+    return ('\n' + result)
+
 def set_header(header, name_file):
     return (header.replace('[NAMEFILE]', name_file))
 
@@ -63,16 +70,32 @@ def safe_save(name_file, content):
     with open(".safe" + name_file, 'w+') as f:
         f.write(content)
         
-def write_new_file(name_file, header, content):
+def write_new_file(name_file, header, content, includes):
     name_file = name_file.lower()
     name_file += '.c'
     header = set_header(header, name_file)
     with open(name_file, 'w+') as f:
         f.write(header)
+        if (includes != 0):
+            f.write(includes)
         f.write(content)
+
+def print_usage():
+    print('Usage: [name_file.c](file to parse) [-i \'file1,file2\']' +
+          '(optional, file .h to include in each div file)')
         
 #---Main---
-if (len(sys.argv) == 2):
+nb_arg = len(sys.argv)
+if (nb_arg == 2 or nb_arg == 4):
+    if (nb_arg == 4):
+        if '-i' in sys.argv:
+            try:
+                includes = make_includes(sys.argv[sys.argv.index('-i') + 1])
+            except:
+              print_usage()
+              print("fuck error")
+    else:
+        includes = 0
     content = get_content(sys.argv[1])
     safe_save(sys.argv[1],content)
     cuts = get_cut(content) 
@@ -81,12 +104,14 @@ if (len(sys.argv) == 2):
     for s in cuts:
         if (s == cuts[len(cuts) - 1]):
             tmp_content = Between_at_end(s+'*/', content)
-            write_new_file(s, header, tmp_content)
+            write_new_file(s, header, tmp_content, includes)
         else:
             tmp_content = Between(s+'*/', '/*'+cuts[cuts.index(s) + 1],content)
-            write_new_file(s, header, tmp_content)
+            write_new_file(s, header, tmp_content, includes)
     for s in cuts:
         if (s == cuts[len(cuts) - 1]):
             print(s.lower() + '.c')
         else:
             print(s.lower() + '.c' + ' \\')
+else:
+    print_usage()

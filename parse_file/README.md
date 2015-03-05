@@ -1,6 +1,36 @@
 #parse_file
 
-##Usage :
+------------------------------------------------------------------------
+##MAJ 1
+Add option for automatically include header in div file.
+
+###Example
+	parse_file main.c -i 'one,two'
+
+###Output file
+```c
+/*
+** main.c for toto in /home/oom/Documents/Temp
+**
+** Made by oom
+** Login   <oom@epitech.net>
+**
+** Started on  Thu Feb 19 10:04:06 2015 oom
+** Last update Thu Feb 19 10:09:00 2015 oom
+*/
+
+#include "one.h"
+#include "two.h"
+
+int     main(int ac, char **av)
+{
+  print_char('%');
+  print_str("test");
+  return (0);
+}
+```
+------------------------------------------------------------------------
+##Usage 
 	parse_file [file_to_cut]
 
 Parse one file in multiple file for respect the Epitech's norm and return the name of files for pastle in Makefile.
@@ -9,7 +39,7 @@ The parsing pastle the functions without the includes.
 
 *You can use like :* **parse_file main.c**
 
-##Example :
+##Example
 	    parse_file main.c
 ###Content of main.c
 ```c
@@ -54,7 +84,7 @@ int	main(int ac, char **av)
 }
 ```      
 
-###Return : 
+###Return  
 	utils.c \
 	print.c \
 	main.c
@@ -106,7 +136,7 @@ void	print_str(char *str)
 }
 ```
 
-### In main.c :
+###In main.c 
 ```c
 /*
 ** main.c for toto in /home/oom/Documents/Temp
