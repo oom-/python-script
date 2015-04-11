@@ -55,7 +55,7 @@ def get_header(content):
         
 def get_cut(content):
     toto = []
-    regex = re.compile("/\*(\w+)\*/")
+    regex = re.compile("/\* *(\w+) *\*/")
     matchs = regex.findall(content)
     for m in matchs:
         toto.append(m)
