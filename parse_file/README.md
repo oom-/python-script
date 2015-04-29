@@ -4,6 +4,9 @@
 ##UPDATE 1
 Add optionnal option for automatically include header in div file.
 
+##UPDATE 2
+Change /*Title*/ by /*@Title*/.
+
 ###Example
 	parse_file main.c -i 'one,two'
 
@@ -16,7 +19,7 @@ Add optionnal option for automatically include header in div file.
 ** Login   <oom@epitech.net>
 **
 ** Started on  Thu Feb 19 10:04:06 2015 oom
-** Last update Thu Feb 19 10:09:00 2015 oom
+   Last update Thu Apr 30 00:56:18 2015 schweitzer lucas
 */
 
 #include "one.h"
@@ -53,7 +56,7 @@ The parsing pastle the functions without the includes.
 ** Last update Thu Feb 19 10:20:22 2015 oom
 */
 
-/*Utils*/
+/*@Utils*/
 int	get_strlen(char *str)
 {
   int	i;
@@ -64,7 +67,7 @@ int	get_strlen(char *str)
   return (i);
 }
 
-/*Print*/
+/*@Print*/
 void	print_char(char c)
 {
   write(1, &c, 1);
@@ -75,7 +78,7 @@ void	print_str(char *str)
   write(1, &str, get_strlen(str));
 }
 
-/*Main*/
+/*@Main*/
 int	main(int ac, char **av)
 {
   print_char('%');
