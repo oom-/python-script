@@ -1,17 +1,17 @@
-#get_functions
+# get_functions
 
-##Usage :
+## Usage :
 	get_functions [files_names]
 
 Return all prototype of function found in the file.
 
-*You can use like :* **get_functions *.c >> include.h**
+* You can use like :* **get_functions *.c >> include.h**
 
 
-##Examples :
+## Examples :
 	   get_functions bsq.c
 
-###Return : 
+### Return : 
 	  char	      **get_map_from_file(char *str, int *nbr_lines);
 	  int	      check_box_b(char **map, int xstart, int ystart, int len);
 	  int	      check_box(int len, int largeur, char **map, int nbr_lines);
