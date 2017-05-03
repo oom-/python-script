@@ -1,16 +1,16 @@
-#parse_file
+# parse_file
 
 ------------------------------------------------------------------------
-##UPDATE 1
+## UPDATE 1
 Add optionnal option for automatically include header in div file.
 
-##UPDATE 2
+## UPDATE 2
 Change /*Title*/ by /*@Title*/.
 
-###Example
+### Example
 	parse_file main.c -i 'one,two'
 
-###Output file
+### Output file
 ```c
 /*
 ** main.c for toto in /home/oom/Documents/Temp
@@ -33,7 +33,7 @@ int     main(int ac, char **av)
 }
 ```
 ------------------------------------------------------------------------
-##Usage 
+## Usage 
 	parse_file [file_to_cut]
 
 Parse one file in multiple file for respect the Epitech's norm and return the name of files for pastle in Makefile.
@@ -42,9 +42,9 @@ The parsing pastle the functions without the includes.
 
 *You can use like :* **parse_file main.c**
 
-##Example
+## Example
 	parse_file main.c
-###Content of main.c
+### Content of main.c
 ```c
 /*
 ** main.c for toto in /home/oom/Documents/Temp
@@ -87,13 +87,13 @@ int	main(int ac, char **av)
 }
 ```      
 
-###Return  
+### Return  
 	utils.c \
 	print.c \
 	main.c
 
 
-###In utils.c
+### In utils.c
 ```c
 /*
 ** utils.c for toto in /home/oom/Documents/Temp
@@ -116,7 +116,7 @@ int	get_strlen(char *str)
 }
 ```
 
-###In print.c
+### In print.c
 ```c
 /*
 ** print.c for toto in /home/oom/Documents/Temp
@@ -139,7 +139,7 @@ void	print_str(char *str)
 }
 ```
 
-###In main.c 
+### In main.c 
 ```c
 /*
 ** main.c for toto in /home/oom/Documents/Temp
